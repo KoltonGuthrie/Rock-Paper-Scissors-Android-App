@@ -7,6 +7,8 @@ import android.view.View;
 
 import com.jsu.cs408.lab1a.databinding.ActivityMainBinding;
 
+import java.util.Objects;
+
 public class MainActivity extends AppCompatActivity {
     private ActivityMainBinding binding;
     private Weapon playerWeapon, computerWeapon;
@@ -19,7 +21,8 @@ public class MainActivity extends AppCompatActivity {
         View view = binding.getRoot();
         setContentView(view);
 
-        binding.banner.setText(R.string.banner_text);
+        computerScore = 0;
+        playerScore = 0;
 
     }
 
@@ -27,6 +30,9 @@ public class MainActivity extends AppCompatActivity {
     protected void onStart() {
         super.onStart();
         Log.i("MainActivity", "onStart invoked!");
+
+        binding.score.setText(getString(R.string.score_message, playerScore, computerScore));
+
     }
 
     @Override
@@ -36,42 +42,80 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void onClickButton(View v) {
-        updatePlayersWeapon(v);
+        playerWeapon = updatePlayersWeapon(v);
 
-        updateComputersWeapon();
+        computerWeapon = updateComputersWeapon();
 
-        //compareWeapons(); // Returns true if first variable wins
+        int comparedValue = compareWeapons(playerWeapon, computerWeapon);
 
-        binding.output.setText("You clicked " + playerWeapon.toString() + "!\nThe computer chose " + computerWeapon.toString() + "!");
-        //binding.output.setText("You clicked Rock!");
+        switch(comparedValue) {
+            case 2:
+                binding.output.setText(getString(R.string.tied_message, playerWeapon.toString()));
+                break;
+            case 1:
+                binding.output.setText(getString(R.string.lost_message, playerWeapon.toString(), computerWeapon.toString()));
+                computerScore++;
+                break;
+            case 0:
+                binding.output.setText(getString(R.string.won_message, playerWeapon.toString(), computerWeapon.toString()));
+                playerScore++;
+                break;
+            case -1:
+                binding.output.setText(R.string.compare_error_message);
+                break;
+            default:
+
+        }
+
+        binding.score.setText(getString(R.string.score_message, playerScore, computerScore));
+
     }
 
-    private void updateComputersWeapon() {
+    private Weapon updateComputersWeapon() {
         int num = (int) Math.floor(Math.random() * 3); // 0 - 2
 
         Weapon[] weapons = Weapon.values();
 
         if(num > weapons.length-1) {
-            computerWeapon = Weapon.ROCK;
-            Log.wtf("MainActivity", "Didn't get a number between 0-2 when trying to choose computers weapon!");
-            return;
+            Log.e("MainActivity", "Didn't get a number between 0-2 when trying to choose computers weapon!");
+            return Weapon.ROCK;
         }
 
-        computerWeapon = weapons[num];
-
+        return weapons[num];
     }
 
-    private boolean compareWeapons(Weapon w0, Weapon w1) {
-        return true;
+    /*
+        Returns 0 if first weapon wins, 1 if it loses,
+        2 if they tie, & -1 if something goes horribly wrong
+    */
+    private int compareWeapons(Weapon w0, Weapon w1) {
+        if(w0.equals(w1)) return 2;
+
+        if(w0.equals(Weapon.ROCK)) {
+            if(w1.equals(Weapon.SCISSORS)) return 0;
+            return 1;
+        } else if(w0.equals(Weapon.PAPER)) {
+            if(w1.equals(Weapon.ROCK)) return 0;
+            return 1;
+        } else if(w0.equals(Weapon.SCISSORS)) {
+            if(w1.equals(Weapon.PAPER)) return 0;
+            return 1;
+        }
+
+        Log.e("MainActivity", "Was unable to compare weapons properly!");
+        return -1;
     }
 
-    private void updatePlayersWeapon(View v) {
+    private Weapon updatePlayersWeapon(View v) {
         if(v.equals(binding.rockButton)) {
-            playerWeapon = Weapon.ROCK;
+            return Weapon.ROCK;
         } else if (v.equals(binding.paperButton)) {
-            playerWeapon = Weapon.PAPER;
+            return Weapon.PAPER;
         } else if (v.equals(binding.scissorsButton)) {
-            playerWeapon = Weapon.SCISSORS;
+            return Weapon.SCISSORS;
         }
+
+        Log.e("MainActivity", "Unable to properly update players weapon!");
+        return Weapon.ROCK;
     }
 }
