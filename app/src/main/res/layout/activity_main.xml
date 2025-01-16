@@ -17,6 +17,15 @@
         android:text="@string/banner_text"
         android:textSize="20sp" />
 
+    <TextView
+        android:id="@+id/score"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center|top"
+        android:paddingTop="5sp"
+        android:paddingBottom="5sp"
+        android:textSize="20sp" />
+
     <Button
         android:id="@+id/rockButton"
         android:layout_width="match_parent"
@@ -43,6 +52,5 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center|top"
-        android:text="TextView"
         android:textSize="20sp" />
 </LinearLayout>

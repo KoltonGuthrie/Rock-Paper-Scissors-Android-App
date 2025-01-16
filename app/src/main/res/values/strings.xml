@@ -1,7 +1,12 @@
 <resources>
     <string name="app_name">Lab1A</string>
-    <string name="rock_label">Rock</string>
-    <string name="paper_label">Paper</string>
-    <string name="scissors_label">Scissors</string>
+    <string name="rock_label">Rock 🪨</string>
+    <string name="paper_label">Paper 📰</string>
+    <string name="scissors_label">Scissors ✂️</string>
     <string name="banner_text">Welcome to Rock-Paper-Scissors!\nPlease choose your weapon:</string>
+    <string name="tied_message">You and the computer tied! You both chose %1$s.</string>
+    <string name="lost_message">You lost! You chose %1$s and the computer chose %2$s.</string>
+    <string name="won_message">You won! You chose %1$s and the computer chose %2$s.</string>
+    <string name="compare_error_message">Something went wrong while trying to compare the results! Please try again.</string>
+    <string name="score_message">Player Score: %1$d\nComputer Score: %2$d</string>
 </resources>
