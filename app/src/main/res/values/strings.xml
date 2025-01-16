@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Lab1A</string>
+    <string name="rock_label">Rock</string>
+    <string name="paper_label">Paper</string>
+    <string name="scissors_label">Scissors</string>
+    <string name="banner_text">Welcome to Rock-Paper-Scissors!\nPlease choose your weapon:</string>
+</resources>
