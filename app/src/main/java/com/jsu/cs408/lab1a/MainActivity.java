@@ -72,12 +72,12 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private Weapon updateComputersWeapon() {
-        int num = (int) Math.floor(Math.random() * 3); // 0 - 2
-
         Weapon[] weapons = Weapon.values();
 
+        int num = (int) Math.floor(Math.random() * weapons.length); // 0 - weapons.length-1
+
         if(num > weapons.length-1) {
-            Log.e("MainActivity", "Didn't get a number between 0-2 when trying to choose computers weapon!");
+            Log.e("MainActivity", "Didn't get a number between 0-" + (weapons.length-1) + " when trying to choose computers weapon!");
             return Weapon.ROCK;
         }
 
