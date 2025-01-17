@@ -26,26 +26,44 @@
         android:paddingBottom="5sp"
         android:textSize="20sp" />
 
-    <Button
-        android:id="@+id/rockButton"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:onClick="onClickButton"
-        android:text="@string/rock_label" />
+        android:orientation="horizontal"
+        android:paddingLeft="10sp"
+        android:paddingRight="10sp"
+        android:weightSum="3">
 
-    <Button
-        android:id="@+id/paperButton"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:onClick="onClickButton"
-        android:text="@string/paper_label" />
+        <Button
+            android:id="@+id/rockButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="3sp"
+            android:layout_marginEnd="3sp"
+            android:layout_weight="1"
+            android:onClick="onClickButton"
+            android:text="@string/rock_label" />
 
-    <Button
-        android:id="@+id/scissorsButton"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:onClick="onClickButton"
-        android:text="@string/scissors_label" />
+        <Button
+            android:id="@+id/paperButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="3sp"
+            android:layout_marginEnd="3sp"
+            android:layout_weight="1"
+            android:onClick="onClickButton"
+            android:text="@string/paper_label" />
+
+        <Button
+            android:id="@+id/scissorsButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="3sp"
+            android:layout_marginEnd="3sp"
+            android:layout_weight="1"
+            android:onClick="onClickButton"
+            android:text="@string/scissors_label" />
+    </LinearLayout>
 
     <TextView
         android:id="@+id/output"

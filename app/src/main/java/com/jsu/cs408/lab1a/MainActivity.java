@@ -1,13 +1,12 @@
 package com.jsu.cs408.lab1a;
 
 import androidx.appcompat.app.AppCompatActivity;
+
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 
 import com.jsu.cs408.lab1a.databinding.ActivityMainBinding;
-
-import java.util.Objects;
 
 public class MainActivity extends AppCompatActivity {
     private ActivityMainBinding binding;
@@ -42,6 +41,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void onClickButton(View v) {
+
         playerWeapon = updatePlayersWeapon(v);
 
         computerWeapon = updateComputersWeapon();
